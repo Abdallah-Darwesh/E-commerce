@@ -8,7 +8,7 @@ import { ProductsCardComponent } from "../products-card/products-card.component"
 
 @Component({
   selector: 'app-home-products',
-   imports: [LoadingDataComponent, CurrencyPipe, RouterLink, ProductsCardComponent],
+   imports: [LoadingDataComponent,ProductsCardComponent],
   templateUrl: './home-products.component.html',
   styleUrl: './home-products.component.css'
 })

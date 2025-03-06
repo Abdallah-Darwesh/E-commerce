@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { LoadingDataComponent } from '../../../Shared/Components/loading-data/loading-data.component';
 import { BrandsService } from '../../../Core/Services/brand/brands.service';
-import { IBrands } from '../../../Core/Interfaces/IBrands/ibrands';
+import { IBrands } from '../../../Core/Interfaces/IBrands/IBrands';
 
 @Component({
   selector: 'app-brands',

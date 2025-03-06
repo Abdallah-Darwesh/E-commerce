@@ -10,7 +10,7 @@ import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-products-card',
   // Keep your original imports if needed
-  imports: [LoadingDataComponent, CurrencyPipe, RouterLink, NgxSpinnerComponent],
+  imports: [ CurrencyPipe, RouterLink],
   templateUrl: './products-card.component.html',
   styleUrls: ['./products-card.component.css']
 })

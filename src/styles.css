@@ -1,11 +1,11 @@
+@import"./Styles/Typography/typography.css";
+@import"./Styles/Themes/themes.css";
 /* You can add global styles to this file, and also import other style files */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
-@import"./Styles/Typography/typography.css";
-@import"./Styles/Themes/themes.css";
 
  :root {
     --main-color: #0aad0a;

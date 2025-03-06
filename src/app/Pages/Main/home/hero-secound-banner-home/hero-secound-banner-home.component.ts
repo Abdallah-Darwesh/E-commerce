@@ -7,7 +7,7 @@ import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-hero-secound-banner-home',
-  imports: [CarouselModule, NgxSpinnerComponent],
+  imports: [CarouselModule],
   templateUrl: './hero-secound-banner-home.component.html',
   styleUrls: ['./hero-secound-banner-home.component.css']
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from '../../Core/Services/orders/orders.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-check-out',
@@ -34,7 +34,7 @@ export class CheckOutComponent implements OnInit {
   getCartId(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       this.cartId = params.get('id')!;
-      console.log('Cart ID:', this.cartId); // Debug the cartId value
+      console.log('Cart ID:', this.cartId);
     });
   }
 
@@ -43,11 +43,11 @@ export class CheckOutComponent implements OnInit {
       console.log('Form is invalid');
       return;
     }
-    console.log('Form Data:', this.checkOutForm.value); // Debug the form values
+    console.log('Form Data:', this.checkOutForm.value);
 
     this.ordersService.checkOutPayment(this.cartId, this.checkOutForm.value).subscribe({
       next: response => {
-        console.log('API Response:', response); // Debug API response
+        console.log('API Response:', response);
         if (response.status === 'success' && response.session?.url) {
           // Redirect to the payment session URL.
           window.open(response.session.url, '_self');

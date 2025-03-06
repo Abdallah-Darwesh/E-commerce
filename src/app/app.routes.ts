@@ -42,13 +42,13 @@ export const routes: Routes = [
         path: 'checkout/:id',
         component: CheckOutComponent,
         title: "Fresh-Cart Checkout",
-        data: { renderMode: 'dynamic' }  // This disables prerendering for this route
+        data: { renderMode: 'dynamic' }  // Disables prerendering
       },
       {
         path: 'details/:id',
         component: DetailsComponent,
         title: "Fresh-Cart Details",
-        data: { renderMode: 'dynamic' }  // This disables prerendering for this route
+        data: { renderMode: 'dynamic' }  // Disables prerendering
       },
       { path: 'brands', component: BrandsComponent, title: "Fresh-Cart Home" },
     ]

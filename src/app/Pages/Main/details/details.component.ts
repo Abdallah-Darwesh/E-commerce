@@ -1,5 +1,4 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../Core/Services/products/products.service';
 import { IProductDetails } from '../../../Core/Interfaces/products/IProductDetails';
 import { LoadingDataComponent } from '../../../Shared/Components/loading-data/loading-data.component';
@@ -7,6 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { CartService } from '../../../Core/Services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit, OnDestroy {
-  activeRoute = inject(ActivatedRoute);
+  private activeRoute = inject(ActivatedRoute);
   productsService = inject(ProductsService);
   cartService = inject(CartService);
   toastrService = inject(ToastrService);

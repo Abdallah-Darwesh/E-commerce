@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
-  imports: [ HomeProductsComponent, HeroBannerHomeComponent, HeroSecoundBannerHomeComponent],
+  imports: [LoadingDataComponent, CurrencyPipe, RouterLink, HomeProductsComponent, HeroBannerHomeComponent, HeroSecoundBannerHomeComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

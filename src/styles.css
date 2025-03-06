@@ -108,9 +108,7 @@ input.ng-valid.ng-touched {
     @apply disabled:bg-gray-700 w-full !block mx-auto md:w-1/2 lg:w-1/3 py-2 mt-8 rounded-full bg-main text-gray-100 cursor-pointer focus:outline-none hover:bg-lime-600 duration-300
 } */
 
-.regbtn{
-    @apply disabled:bg-gray-700
-}
+
 /* position */
 .toast-center-center {
     top: 50%;

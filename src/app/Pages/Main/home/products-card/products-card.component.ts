@@ -1,11 +1,11 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { LoadingDataComponent } from '../../../../Shared/Components/loading-data/loading-data.component';
 import { IProducts } from '../../../../Core/Interfaces/products/IProducts';
 import { CartService } from '../../../../Core/Services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products-card',

@@ -1,7 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { LoadingDataComponent } from "../../../Shared/Components/loading-data/loading-data.component";
 import { HomeProductsComponent } from "./home-products/home-products.component";
 import { IProducts } from '../../../Core/Interfaces/products/IProducts';
 import { ProductsService } from '../../../Core/Services/products/products.service';
@@ -12,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
-  imports: [LoadingDataComponent, CurrencyPipe, RouterLink, HomeProductsComponent, HeroBannerHomeComponent, HeroSecoundBannerHomeComponent],
+  imports: [ HomeProductsComponent, HeroBannerHomeComponent, HeroSecoundBannerHomeComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

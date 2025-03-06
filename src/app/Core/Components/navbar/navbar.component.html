@@ -1,0 +1,115 @@
+<nav class="bg-gray-100">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+       
+       <!-- logo -->
+        <a routerLink="home" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/images/freshcart-logo.svg" alt="freshcart-logo">
+        </a>
+       
+       <!--collapse  -->
+        <button data-collapse-toggle="navbar-default" type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-800 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+        </button>
+       
+       <!-- links -->
+        <div class="hidden  capitalize w-full md:flex justify-between flex-grow md:w-auto" id="navbar-default">
+            <!-- main links -->
+        @if(isLogin){
+                    <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0 md:border-0 ">
+                        <li>
+                            <a routerLink="home" routerLinkActive="bg-main text-white "
+                                class="block duration-300  py-2 px-3 text-gray-500 rounded-sm ">home</a>
+                        </li>
+                        <li>
+                            <a routerLink="products" routerLinkActive="bg-main text-white "
+                                class="block duration-300  py-2 px-3 text-gray-500 rounded-sm ">products</a>
+                        </li>
+                        <li>
+                            <a routerLink="categories" routerLinkActive="bg-main text-white "
+                                class="block duration-300  py-2 px-3 text-gray-500 rounded-sm ">categories</a>
+                        </li>
+                        <li>
+                            <a routerLink="brands" routerLinkActive="bg-main text-white "
+                            class="block duration-300   py-2 px-3 text-gray-500 rounded-sm ">brands</a>
+                        </li>
+
+                    
+                    </ul>
+        }
+            <!-- socialmedia links -->
+            <ul
+                class="font-medium flex flex-grow md:justify-end flex-row  p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0 md:border-0 ">
+                <li>
+                    <a href="#"
+                        class="block duration-300  py-2 px-3 text-gray-800 rounded-sm ">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="block duration-300  py-2 px-3 text-gray-800 rounded-sm ">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="block duration-300  py-2 px-3 text-gray-800 rounded-sm ">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="block duration-300  py-2 px-3 text-gray-800 rounded-sm ">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="block duration-300  py-2 px-3 text-gray-800 rounded-sm ">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="block duration-300  py-2 px-3 text-gray-800 rounded-sm ">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+                </li>
+            </ul>
+            <!-- auth links -->
+            <ul 
+                class="font-medium items-center flex flex-col p-4 md:p-0 mt-4 border  rounded-lg  md:flex-row md:space-x-1 rtl:space-x-reverse md:mt-0 md:border-0 ">
+@if(!isLogin){
+                    <li>
+                        <a routerLink="signin" routerLinkActive="bg-main text-white "
+                            class="block duration-300  py-2 px-3 text-gray-500 rounded-sm ">SignIn</a>
+                    </li>
+                    <li>
+                        <a routerLink="signup" routerLinkActive="bg-main text-white "
+                            class="block duration-300  py-2 px-3 text-gray-500 rounded-sm ">SignUp</a>
+                    </li>
+}
+
+@if(isLogin){
+
+
+                            <li  >
+                                <a routerLink="cart" routerLinkActive=" text-white "
+                                    class="block duration-300 relative   py-2 px-3 text-gray-500 rounded-sm ">
+                                    <i class="fa-solid fa-cart-shopping text-main text-xl"></i>
+                                    <span class="bg-red-400 ring-inset  rounded-md text-white text-sm  bottom-3 left-0  py-0.5 px-1 border-green-700 relative">{{countCard()}}</span>
+                                </a>
+                            </li>
+                        <li>
+                        <button (click)="authService.logOut()" role="button" class="block cursor-pointer  px-3 text-gray-500 rounded-sm ">logout</button>
+                    </li>
+
+}
+            
+            </ul>
+        
+        </div>
+    </div>
+</nav>

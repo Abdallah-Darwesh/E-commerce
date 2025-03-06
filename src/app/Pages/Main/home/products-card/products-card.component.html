@@ -1,0 +1,37 @@
+<div class="p-4">
+    <div class="group hover:shadow-2xl duration-300 h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+      <a [routerLink]="['/details', product._id]">
+        <img class="h-[300px] md:h-36 w-full object-contain object-center" [src]="product.imageCover" alt="Product image">
+      </a>
+      <div class="p-6">
+        <h2 class="tracking-widest text-xs title-font font-medium text-main mb-1">
+          {{ product.category.name }}
+        </h2>
+        <h3 class="title-font line-clamp-1 text-lg font-medium text-gray-900 mb-3">
+          <a [routerLink]="['/details', product._id]">
+            {{ product.title }}
+          </a>
+        </h3>
+        <p class="leading-relaxed mb-3 line-clamp-2">
+          {{ product.description }}
+        </p>
+        <div class="flex items-center flex-wrap">
+          {{ product.price | currency:'EGB' }}
+          <span class="text-gray-400 justify-self-end mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+            <i class="fa-solid fa-star text-yellow-400"></i>
+          </span>
+          <span class="text-gray-400 justify-self-end inline-flex items-center leading-none text-sm">
+            {{ product.ratingsAverage }}
+          </span>
+        </div>
+        <div class="my-3">
+          <!-- Using product._id consistently -->
+          <button (click)="addToCart(product._id)" 
+                  class="lg:translate-y-[300%] group-hover:translate-y-[0] duration-300 inline-block w-full text-white bg-main border-0 py-2 px-6 focus:outline-none hover:bg-main rounded text-lg">
+            Add To Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

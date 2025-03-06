@@ -1,0 +1,89 @@
+<div class="min-h-screen flex items-center justify-center bg-indigo-100">
+    <form [formGroup]="loginForm" (ngSubmit)="onloginForm()"
+          class="capitalize w-full md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white p-8 rounded-lg shadow-md">
+      <h2 class="text-3xl text-center text-gray-900 mb-8 font-semibold">Login</h2>
+      <div class="px-4 pb-10">
+        <!-- Email Field -->
+        <div class="w-full mb-4">
+          <label class="block text-gray-700 mb-2" for="email">Email</label>
+          <input id="email" type="email" placeholder="Email"
+                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-700 
+                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                 formControlName="email">
+          <div *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || submitted)">
+            <div class="my-5">
+              <div class="flex p-4 mb-4 text-sm text-white rounded-lg bg-red-700" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"></path>
+                </svg>
+                <div>
+                  <span class="font-medium">Ensure that these requirements are met:</span>
+                  <ul class="mt-1.5 list-disc list-inside">
+                    <li *ngIf="loginForm.get('email')?.hasError('required')">Required</li>
+                    <li *ngIf="loginForm.get('email')?.hasError('email')">Invalid Email</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Password Field -->
+        <div class="w-full mb-4">
+          <label class="block text-gray-700 mb-2" for="password">Password</label>
+          <input id="password" type="password" placeholder="Password"
+                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-700 
+                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                 formControlName="password">
+          <div *ngIf="loginForm.get('password')?.errors && (loginForm.get('password')?.touched || submitted)">
+            <div class="my-5">
+              <div class="flex p-4 mb-4 text-sm text-white rounded-lg bg-red-700" role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"></path>
+                </svg>
+                <div>
+                  <span class="font-medium">Ensure that these requirements are met:</span>
+                  <ul class="mt-1.5 list-disc list-inside">
+                    <li *ngIf="loginForm.get('password')?.hasError('required')">Required</li>
+                    <li *ngIf="loginForm.get('password')?.hasError('pattern')">Password Invalid</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Forgot Password Link -->
+        <a routerLink="/forget" class="cursor-pointer content-center self-center text-main">
+          Forget Password?!
+        </a>
+    
+        <!-- Submit Button -->
+        <div class="w-full flex items-center justify-end gap-4">
+          <button [disabled]="isLoading" type="submit"
+                  class="regbtn w-full lg:w-[50%] mx-auto py-2 mt-8 rounded-full bg-green-600 text-gray-100 cursor-pointer 
+                         focus:outline-none hover:bg-green-500 duration-300">
+            Submit
+            <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
+          </button>
+        </div>
+    
+        <!-- Error Message -->
+        <div *ngIf="MsgError">
+          <p class="bg-red-600 text-white mx-auto w-[200px] px-2 mt-3 py-3 border text-center">
+            {{ MsgError }}
+          </p>
+        </div>
+    
+        <!-- Success Message -->
+        <div *ngIf="IsSuccess">
+          <p class="bg-green-600 text-white mx-auto w-[200px] px-2 mt-3 py-3 border text-center">
+            Login Successful
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+  

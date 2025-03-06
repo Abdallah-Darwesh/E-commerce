@@ -1,0 +1,24 @@
+@if(allCategories){
+    <div class="container mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4">
+        @for (cat of allCategories.data; track $index) {
+
+            <div class="p-4">
+                <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                    <img class="lg:h-48 md:h-36 w-full object-contain object-center" [src]="cat.image" alt="blog">
+                    <div class="p-6">
+                        <h2 class="tracking-widest text-xs text-main title-font font-medium text-gray-400 mb-1">{{cat.name}}
+                        </h2>
+                        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{cat.slug}}</h1>
+            
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+}
+@else{
+    <app-loading-data></app-loading-data>
+}

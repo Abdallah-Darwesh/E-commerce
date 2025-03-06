@@ -38,9 +38,19 @@ export const routes: Routes = [
       { path: 'allorders', component: AllordersComponent, title: "Fresh-Cart Allorders" },
       { path: 'categories', component: CategoriesComponent, title: "Fresh-Cart Categories" },
       { path: 'cart', component: CartComponent, title: "Fresh-Cart Home Cart" },
-      { path: 'checkout/:id', component: CheckOutComponent, title: "Fresh-Cart Checkout" },
+      {
+        path: 'checkout/:id',
+        component: CheckOutComponent,
+        title: "Fresh-Cart Checkout",
+        data: { renderMode: 'dynamic' }  // This disables prerendering for this route
+      },
+      {
+        path: 'details/:id',
+        component: DetailsComponent,
+        title: "Fresh-Cart Details",
+        data: { renderMode: 'dynamic' }  // This disables prerendering for this route
+      },
       { path: 'brands', component: BrandsComponent, title: "Fresh-Cart Home" },
-      { path: 'details/:id', component: DetailsComponent },
     ]
   },
   { path: '**', component: NotFoundComponent }

@@ -5,11 +5,12 @@ import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../../Core/Services/cart/cart.service';
 import { ICart } from '../../../Core/Interfaces/cart/icart';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { LoadingDataComponent } from '../../../Shared/Components/loading-data/loading-data.component';
 
 @Component({
   selector: 'app-cart',
   // Preserve your original imports.
-  imports: [CurrencyPipe, RouterLink],
+  imports: [CurrencyPipe, RouterLink,LoadingDataComponent],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })

@@ -1,4 +1,5 @@
-@if(cartDetails.totalCartPrice) {
+@defer () {
+  @if(cartDetails.totalCartPrice) {
     <section class="bg-gray-50 rounded-lg shadow-lg p-4 max-w-4xl mx-auto my-8">
       <h1 class="text-center text-3xl font-bold text-main mb-4">Shopping Cart</h1>
       <div class="flex justify-between items-center mb-4">
@@ -45,6 +46,7 @@
       </button>
     </section>
   } @else {
-    <h1 class="text-center text-2xl text-main mx-auto my-8">There is No Data In your Cart 0.0</h1>
+    <app-loading-data></app-loading-data>
   }
   
+}

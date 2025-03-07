@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
-
+import { trigger, style, animate, transition } from '@angular/animations';
 @Component({
-  selector: 'app-not-found',
   imports: [],
+  selector: 'app-not-found',
   templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.css'
+  styleUrls: ['./not-found.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1s ease-in', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class NotFoundComponent {
 

@@ -7,12 +7,36 @@ import { Meta, Title } from '@angular/platform-browser';
 import { CartService } from '../../../Core/Services/cart/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-details',
   imports: [LoadingDataComponent, CurrencyPipe],
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+  styleUrls: ['./details.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(20px)' }),
+        animate('300ms ease-out', 
+          style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+    trigger('fadeInSection', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('600ms cubic-bezier(0.4, 0, 0.2, 1)', 
+          style({ opacity: 1 }))
+      ])
+    ]),
+    trigger('staggerSlide', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(40px)' }),
+        animate('500ms {{delay}}ms cubic-bezier(0.4, 0, 0.2, 1)', 
+          style({ opacity: 1, transform: 'translateX(0)' }))
+      ], { params: { delay: 0 }})
+    ])
+  ]
 })
 export class DetailsComponent implements OnInit, OnDestroy {
   private activeRoute = inject(ActivatedRoute);

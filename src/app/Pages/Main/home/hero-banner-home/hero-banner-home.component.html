@@ -1,22 +1,32 @@
-
-<div class="container mx-auto">
-    <div class="lg:grid grid-cols-12"> 
-        <div class="col-span-8">
-            <owl-carousel-o [options]="customOptions">
-                <ng-template carouselSlide><img class="h-[500px] w-full  object-cover" src="/images/slider-image-1.jpeg"
-                        alt="slider-image-1"></ng-template>
-                <ng-template carouselSlide><img class="h-[500px] w-full  object-cover" src="/images/slider-image-2.jpeg"
-                        alt="slider-image-2"></ng-template>
-                <ng-template carouselSlide><img class="h-[500px] w-full  object-cover" src="/images/slider-image-3.jpeg"
-                        alt="slider-image-3"></ng-template>
-            </owl-carousel-o>
-
+<div class="container max-w-7xl mx-auto px-4 py-12" [@fadeInSection]>
+    <div class="grid grid-cols-12 gap-6 rounded-2xl overflow-hidden">
+      <!-- Main Slider Carousel -->
+      <div class="col-span-12 xl:col-span-8">
+        <owl-carousel-o [options]="customOptions" class="rounded-2xl overflow-hidden">
+          @for (i of [1,2,3]; track $index) {
+            <ng-template carouselSlide>
+              <div class="relative h-[500px]">
+                <img class="h-full w-full object-cover rounded-xl shadow-lg" 
+                     src="/images/slider-image-{{ i }}.jpeg" 
+                     alt="Slider {{ i }}">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
+              </div>
+            </ng-template>
+          }
+        </owl-carousel-o>
+      </div>
+      <!-- Side Promo Images -->
+      <div class="col-span-4 hidden xl:block space-y-6">
+        <div class="h-[242px] rounded-2xl overflow-hidden">
+          <img class="h-full w-full object-cover rounded-xl shadow-lg" 
+               src="/images/slider-image-2.jpeg" 
+               alt="Side 1">
         </div>
-        <div class="col-span-4 hidden xl:block">
-            <div class="">
-                <img class="block w-full h-[250px] " src="/images/slider-image-2.jpeg" alt="slider-image-2">
-                <img class="block w-full h-[250px] " src="/images/slider-image-3.jpeg" alt="slider-image-2">
-            </div>
+        <div class="h-[242px] rounded-2xl overflow-hidden">
+          <img class="h-full w-full object-cover rounded-xl shadow-lg" 
+               src="/images/slider-image-3.jpeg" 
+               alt="Side 2">
         </div>
+      </div>
     </div>
-</div>
+  </div>

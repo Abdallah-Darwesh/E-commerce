@@ -1,13 +1,40 @@
-<div class="container mx-auto">
-<owl-carousel-o [options]="customOptions">
-@for (cat of allCategories.data; track $index) {
-
-            <ng-template carouselSlide>
-                <img class="h-[300px] object-cover object-top" [src]="cat.image" [alt]="cat.name" [title]="cat.slug">
-            </ng-template>
-
-            <p class="ps-3">{{cat.slug}}</p>
-
-}
-</owl-carousel-o>
-</div>
+<div class="container max-w-7xl mx-auto px-4 py-12" [@fadeInSection]>
+    <h2 class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8 text-center">
+      Explore Categories
+    </h2>
+    
+    <owl-carousel-o [options]="customOptions" class="px-4">
+      @for (cat of allCategories.data; track $index; let i = $index) {
+        <ng-template carouselSlide>
+          <div class="relative group overflow-hidden rounded-2xl shadow-xl mx-2" 
+               [@staggerSlide]="{value: '', params: {delay: i * 50}}">
+            <!-- Image Container -->
+            <div class="relative h-64 md:h-72 overflow-hidden">
+              <img class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" 
+                   [src]="cat.image" 
+                   [alt]="cat.name"
+                   loading="lazy">
+              
+              <!-- Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            </div>
+  
+            <!-- Content Card -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 backdrop-blur-md bg-white/5 hover:bg-white/20 transition-all">
+              <div class="space-y-2">
+                <h3 class="text-xl font-bold text-white drop-shadow-lg">{{ cat.name }}</h3>
+                <p class="text-indigo-100 font-medium text-sm">{{ cat.slug }}</p>
+              </div>
+              
+              <button class="mt-4 px-4 py-2 bg-white/90 text-indigo-600 rounded-full 
+                          hover:bg-white hover:shadow-lg transition-all duration-300
+                          transform translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100">
+                Explore Collection
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>

@@ -8,10 +8,31 @@ import { CartService } from '../../Services/cart/cart.service';
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  
 })
 export class NavbarComponent  implements  OnInit  {
 
+  navLinks = [
+    { path: 'home', label: 'Home' },
+    { path: 'products', label: 'Products' },
+    { path: 'categories', label: 'Categories' },
+    { path: 'brands', label: 'Brands' }
+  ];
+  
+  socialLinks = [
+    { icon: 'fab fa-facebook', url: '#' },
+    { icon: 'fab fa-instagram', url: '#' },
+    { icon: 'fab fa-linkedin', url: '#' },
+    { icon: 'fab fa-twitter', url: '#' },
+    { icon: 'fab fa-youtube', url: '#' },
+    { icon: 'fab fa-tiktok', url: '#' }
+  ];
+  
+  authLinks = [
+    { path: 'signin', label: 'Sign In' },
+    { path: 'signup', label: 'Sign Up' }
+  ];
 
   @Input() isLogin: boolean = false;
 

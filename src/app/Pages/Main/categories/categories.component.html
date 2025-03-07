@@ -1,24 +1,26 @@
 @if(allCategories){
-    <div class="container mx-auto">
-        <div class="grid md:grid-cols-2 lg:grid-cols-4">
+    <div class="container mx-auto px-4 py-12" [@fadeInSection]>
+      <h2 class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-8 text-center">
+        Product Categories
+      </h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         @for (cat of allCategories.data; track $index) {
-
-            <div class="p-4">
-                <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                    <img class="lg:h-48 md:h-36 w-full object-contain object-center" [src]="cat.image" alt="blog">
-                    <div class="p-6">
-                        <h2 class="tracking-widest text-xs text-main title-font font-medium text-gray-400 mb-1">{{cat.name}}
-                        </h2>
-                        <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{cat.slug}}</h1>
-            
-                    </div>
-                </div>
+          <div class="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-6 
+                    hover:shadow-2xl transition-all duration-300 overflow-hidden"
+               [@staggerSlide]="{value: '', params: {delay: $index * 50}}">
+            <div class="aspect-square bg-gray-50 rounded-xl p-4 flex items-center justify-center">
+              <img class="w-full h-48 object-contain transition-transform group-hover:scale-110 duration-300" 
+                   [src]="cat.image" 
+                   alt="{{ cat.name }}">
             </div>
+            <div class="pt-4 space-y-2">
+              <h3 class="text-lg font-semibold text-gray-900">{{ cat.slug }}</h3>
+              <p class="text-sm text-indigo-600 font-medium">{{ cat.name }}</p>
+            </div>
+          </div>
         }
+      </div>
     </div>
-</div>
-
-}
-@else{
+    } @else {
     <app-loading-data></app-loading-data>
-}
+    }

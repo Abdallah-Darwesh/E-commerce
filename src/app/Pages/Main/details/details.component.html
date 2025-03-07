@@ -1,35 +1,32 @@
-@if (currentProduct) {
-    <div class="container mx-auto px-4 py-8">
-      <section class="flex flex-col lg:flex-row gap-8">
-        <!-- Sticky Image Container -->
-        <div class="lg:sticky lg:top-8 lg:w-1/2 h-fit">
-          <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-            <img 
-              alt="ecommerce" 
-              class="w-full h-96 object-contain object-center rounded-lg"
-              [src]="currentProduct.data.imageCover"
-              loading="eager"
-            >
+@if(currentProduct) {
+  <div class="bg-gradient-to-br from-indigo-50 to-purple-50 min-h-screen" [@fadeIn]>
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8">
+        <div class="grid lg:grid-cols-2 gap-8">
+          <!-- Image Section -->
+          <div class="lg:sticky lg:top-8 h-fit">
+            <div class="bg-gray-50 rounded-xl p-8 shadow-sm">
+              <img class="w-full h-96 object-contain object-center rounded-lg" 
+                   [src]="currentProduct.data.imageCover" 
+                   alt="Product image"
+                   loading="eager">
+            </div>
           </div>
-        </div>
-    
-        <!-- Product Details -->
-        <div class="lg:w-1/2">
+  
+          <!-- Details Section -->
           <div class="space-y-6">
             <div>
-              <span class="text-sm font-medium text-indigo-600">
+              <span class="text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 {{ currentProduct.data.category.name }}
               </span>
-              <h1 class="mt-2 text-3xl font-bold text-gray-900">
-                {{ currentProduct.data.title }}
-              </h1>
+              <h1 class="mt-2 text-4xl font-bold text-gray-900">{{ currentProduct.data.title }}</h1>
             </div>
-    
+  
             <!-- Ratings -->
             <div class="flex items-center gap-3">
               <div class="flex items-center">
                 @for (star of [1,2,3,4,5]; track star) {
-                  <svg [class]="'w-5 h-5 ' + (star <= currentProduct.data.ratingsAverage ? 'text-yellow-400' : 'text-gray-300')" 
+                  <svg [class]="'w-6 h-6 ' + (star <= currentProduct.data.ratingsAverage ? 'text-yellow-400' : 'text-gray-300')" 
                        fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                   </svg>
@@ -39,68 +36,66 @@
                 {{ currentProduct.data.ratingsQuantity }} reviews
               </span>
             </div>
-    
+  
             <!-- Description -->
             <p class="text-gray-600 leading-relaxed">
               {{ currentProduct.data.description }}
             </p>
-    
+  
             <!-- Variants -->
             <div class="space-y-6">
               <!-- Color Selector -->
               <div>
-                <h3 class="text-sm font-medium text-gray-900">Color</h3>
+                <h3 class="text-sm font-medium text-gray-900">Color Options</h3>
                 <div class="mt-2 flex gap-2">
-                  @for (color of ['gray', 'indigo', 'blue']; track color) {
-                    <button 
-                      class="w-8 h-8 rounded-full border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                      [style.backgroundColor]="color">
+                  @for (color of ['#6B7280', '#6366F1', '#3B82F6']; track color) {
+                    <button class="w-9 h-9 rounded-full border-2 border-white shadow-lg hover:scale-110 transition-all"
+                            [style.backgroundColor]="color"
+                            [style.boxShadow]="'0 0 0 2px ' + color">
                     </button>
                   }
                 </div>
               </div>
-    
+  
               <!-- Size Selector -->
               <div>
-                <h3 class="text-sm font-medium text-gray-900">Size</h3>
+                <h3 class="text-sm font-medium text-gray-900">Available Sizes</h3>
                 <div class="mt-2 grid grid-cols-4 gap-3">
                   @for (size of ['S', 'M', 'L', 'XL']; track size) {
-                    <button 
-                      class="flex items-center justify-center rounded-md border py-3 text-sm font-medium uppercase hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button class="py-2.5 text-sm font-medium rounded-lg border border-gray-200
+                               hover:border-indigo-500 hover:bg-indigo-50 hover:text-indigo-600
+                               transition-colors duration-300">
                       {{ size }}
                     </button>
                   }
                 </div>
               </div>
             </div>
-    
+  
             <!-- Price & Actions -->
             <div class="border-t pt-6">
               <div class="flex items-center justify-between">
-                <span class="text-3xl font-bold text-gray-900">
+                <span class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   {{ currentProduct.data.price | currency:'EGP' }}
                 </span>
                 <div class="flex gap-3">
-                  <button 
-                    (click)="addToCart(currentProduct.data._id)"
-                    class="flex items-center gap-2 rounded-lg bg-main px-6 py-3 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:bg-indigo-500 focus:ring-offset-2">
+                  <button (click)="addToCart(currentProduct.data._id)" 
+                          class="flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 
+                                 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all">
+                    <i class="fas fa-shopping-cart"></i>
                     Add to Cart
                   </button>
-                  <button 
-                    class="rounded-lg p-3 text-gray-400 hover:bg-gray-50 hover:text-gray-500 focus:outline-none focus:ring-2 focus:bg-indigo-500">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                    </svg>
+                  <button class="p-3.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
+                    <i class="fas fa-heart text-red-500"></i>
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
+  </div>
   } @else {
-    <app-loading-data></app-loading-data>
-    
+  <app-loading-data></app-loading-data>
   }
-  

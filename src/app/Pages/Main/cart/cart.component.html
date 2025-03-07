@@ -1,52 +1,69 @@
-@defer () {
-  @if(cartDetails.totalCartPrice) {
-    <section class="bg-gray-50 rounded-lg shadow-lg p-4 max-w-4xl mx-auto my-8">
-      <h1 class="text-center text-3xl font-bold text-main mb-4">Shopping Cart</h1>
-      <div class="flex justify-between items-center mb-4">
-        <span class="text-green-500 text-xl">
-          Total Cart Price: {{ cartDetails.totalCartPrice | currency:'EGB' }}
-        </span>
-        <button (click)="clearItems()" class="bg-main text-white rounded-lg text-sm px-6 py-2 hover:bg-main-dark transition-colors duration-300">
-          Clear Data
-        </button>
-      </div>
-      
-      @for (product of cartDetails.products; track product.product._id) {
-        <div class="grid grid-cols-1 md:grid-cols-[15%_minmax(0,1fr)] items-center border-b mb-4 p-2 gap-4">
-          <!-- Product Image -->
-          <div>
-            <img [src]="product.product.imageCover" [alt]="product.product.title" class="w-full h-32 object-contain">
+<div class="bg-white/90 w-3/4 mx-auto backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-white/20">
+  @defer () {
+    @if(cartDetails.totalCartPrice) {
+      <section>
+        <h1 class="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent text-center mb-6">
+          Your Shopping Cart
+        </h1>
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+          <div class="text-lg font-semibold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+            Total: {{ cartDetails.totalCartPrice | currency:'EGP' }}
           </div>
-          <!-- Product Info -->
-          <div class="flex justify-between items-center">
-            <div>
-              <h3 class="text-lg font-semibold">{{ product.product.title }}</h3>
-              <h4 class="text-gray-600">Price: {{ product.price | currency:'EGB' }}</h4>
-              <button (click)="deleteItem(product.product._id)" class="text-red-500 mt-2">
-                <i class="fas fa-trash-alt"></i> Remove
-              </button>
-            </div>
-            <!-- Quantity Controls -->
-            <div class="flex items-center">
-              <button (click)="changeProductCount(product.product._id, product.count + 1)" class="text-green-600 text-xl">
-                <i class="fa-solid fa-square-plus"></i>
-              </button>
-              <span class="mx-2">{{ product.count }}</span>
-              <button (click)="changeProductCount(product.product._id, product.count - 1)" class="text-green-600 text-xl">
-                <i class="fa-solid fa-square-minus"></i>
-              </button>
-            </div>
-          </div>
+          <button (click)="clearItems()"
+                  class="px-6 py-2 bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all">
+            Clear Cart
+          </button>
         </div>
-      }
-      
-      <!-- Checkout Button -->
-      <button class="btn btn-success w-full mt-4 py-2" [routerLink]="['/checkout', cartDetails._id]" routerLinkActive="router-link-active">
-        Checkout
-      </button>
-    </section>
-  } @else {
-    <app-loading-data></app-loading-data>
+        <div class="space-y-4">
+          @for (product of cartDetails.products; track product.product._id; let i = $index) {
+            <div class="group bg-white/5 backdrop-blur-sm rounded-xl p-4 shadow-sm hover:shadow-md transition-all"
+                 [@staggerSlide]="{value: '', params: {delay: i * 50}}">
+              <div class="flex flex-col md:flex-row gap-4 items-center">
+                <!-- Product Image -->
+                <div class="w-full md:w-32">
+                  <img [src]="product.product.imageCover" [alt]="product.product.title"
+                       class="w-full h-32 object-contain rounded-lg bg-gray-50 p-2">
+                </div>
+                <!-- Product Details -->
+                <div class="flex-1">
+                  <div class="flex justify-between items-start gap-4">
+                    <div>
+                      <h3 class="text-lg font-semibold text-gray-900">{{ product.product.title }}</h3>
+                      <p class="text-indigo-600 font-medium mt-1">
+                        {{ product.price | currency:'EGP' }}
+                      </p>
+                    </div>
+                    <!-- Quantity Controls -->
+                    <div class="flex items-center gap-2">
+                      <button (click)="changeProductCount(product.product._id, product.count - 1)"
+                              class="text-indigo-600 hover:text-purple-600">
+                        <i class="fa-solid fa-circle-minus"></i>
+                      </button>
+                      <span class="w-8 text-center font-medium">{{ product.count }}</span>
+                      <button (click)="changeProductCount(product.product._id, product.count + 1)"
+                              class="text-indigo-600 hover:text-purple-600">
+                        <i class="fa-solid fa-circle-plus"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Remove Button -->
+                  <button (click)="deleteItem(product.product._id)"
+                          class="mt-3 px-4 py-1.5 bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-full text-sm hover:shadow-sm transition-all">
+                    <i class="fas fa-trash-alt mr-2"></i>Remove Item
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <button [routerLink]="['/checkout', cartDetails._id]"
+                class="w-full mt-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-105 transition-all">
+          Proceed to Checkout
+        </button>
+      </section>
+    } @else {
+      <app-loading-data></app-loading-data>
+    }
   }
-  
-}
+</div>
+

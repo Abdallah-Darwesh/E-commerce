@@ -1,89 +1,97 @@
-<div class="min-h-screen flex items-center justify-center bg-indigo-100">
-    <form [formGroup]="loginForm" (ngSubmit)="onloginForm()"
-          class="capitalize w-full md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white p-8 rounded-lg shadow-md">
-      <h2 class="text-3xl text-center text-gray-900 mb-8 font-semibold">Login</h2>
-      <div class="px-4 pb-10">
-        <!-- Email Field -->
-        <div class="w-full mb-4">
-          <label class="block text-gray-700 mb-2" for="email">Email</label>
-          <input id="email" type="email" placeholder="Email"
-                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-700 
-                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                 formControlName="email">
-          <div *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || submitted)">
-            <div class="my-5">
-              <div class="flex p-4 mb-4 text-sm text-white rounded-lg bg-red-700" role="alert">
-                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
-                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"></path>
-                </svg>
-                <div>
-                  <span class="font-medium">Ensure that these requirements are met:</span>
-                  <ul class="mt-1.5 list-disc list-inside">
-                    <li *ngIf="loginForm.get('email')?.hasError('required')">Required</li>
-                    <li *ngIf="loginForm.get('email')?.hasError('email')">Invalid Email</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <!-- Password Field -->
-        <div class="w-full mb-4">
-          <label class="block text-gray-700 mb-2" for="password">Password</label>
-          <input id="password" type="password" placeholder="Password"
-                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-700 
-                        focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                 formControlName="password">
-          <div *ngIf="loginForm.get('password')?.errors && (loginForm.get('password')?.touched || submitted)">
-            <div class="my-5">
-              <div class="flex p-4 mb-4 text-sm text-white rounded-lg bg-red-700" role="alert">
-                <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
-                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"></path>
-                </svg>
-                <div>
-                  <span class="font-medium">Ensure that these requirements are met:</span>
-                  <ul class="mt-1.5 list-disc list-inside">
-                    <li *ngIf="loginForm.get('password')?.hasError('required')">Required</li>
-                    <li *ngIf="loginForm.get('password')?.hasError('pattern')">Password Invalid</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-    
-        <!-- Forgot Password Link -->
-        <a routerLink="/forget" class="cursor-pointer content-center self-center text-main">
-          Forget Password?!
-        </a>
-    
-        <!-- Submit Button -->
-        <div class="w-full flex items-center justify-end gap-4">
-          <button [disabled]="isLoading" type="submit"
-                  class="regbtn w-full lg:w-[50%] mx-auto py-2 mt-8 rounded-full bg-green-600 text-gray-100 cursor-pointer 
-                         focus:outline-none hover:bg-green-500 duration-300">
-            Submit
-            <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
-          </button>
-        </div>
-    
-        <!-- Error Message -->
-        <div *ngIf="MsgError">
-          <p class="bg-red-600 text-white mx-auto w-[200px] px-2 mt-3 py-3 border text-center">
-            {{ MsgError }}
-          </p>
-        </div>
-    
-        <!-- Success Message -->
-        <div *ngIf="IsSuccess">
-          <p class="bg-green-600 text-white mx-auto w-[200px] px-2 mt-3 py-3 border text-center">
-            Login Successful
-          </p>
-        </div>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50" [@fadeIn]>
+  <form [formGroup]="loginForm" (ngSubmit)="onloginForm()"
+        class="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white/90 backdrop-blur-sm p-10 rounded-2xl shadow-xl border border-white/20">
+    <div class="flex flex-col items-center mb-8">
+      <h2 class="text-4xl text-center font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
+        Welcome Back
+      </h2>
+      <div class="h-1 w-24 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full"></div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-6">
+      <div class="relative">
+        <input id="email" type="email" placeholder=" " formControlName="email"
+               class="w-full peer px-4 py-3 rounded-lg border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all outline-none">
+        <label for="email" 
+               class="absolute left-4 top-3.5 text-gray-400 pointer-events-none transition-all 
+                      peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3.5 
+                      peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-indigo-600
+                      peer-[&:not(:placeholder-shown)]:-top-6 peer-[&:not(:placeholder-shown)]:text-sm">
+          Email Address
+        </label>
       </div>
-    </form>
-  </div>
+      @if (loginForm.get('email')?.errors && (loginForm.get('email')?.touched || submitted)) {
+        <div class="mt-2 flex items-center gap-1 text-red-500 text-sm">
+          <i class="fas fa-exclamation-triangle"></i>
+          @if (loginForm.get('email')?.hasError('required')) {
+            <span>Email is required</span>
+          }
+          @if (loginForm.get('email')?.hasError('email')) {
+            <span>Invalid email format</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Password Field -->
+    <div class="mb-6">
+      <div class="relative">
+        <input id="password" type="password" placeholder=" " formControlName="password"
+               class="w-full peer px-4 py-3 rounded-lg border border-gray-200 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all outline-none">
+        <label for="password" 
+               class="absolute left-4 top-3.5 text-gray-400 pointer-events-none transition-all 
+                      peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-3.5 
+                      peer-focus:-top-2.5 peer-focus:text-sm peer-focus:text-indigo-600
+                      peer-[&:not(:placeholder-shown)]:-top-6 peer-[&:not(:placeholder-shown)]:text-sm">
+          Password
+        </label>
+      </div>
+      @if (loginForm.get('password')?.errors && (loginForm.get('password')?.touched || submitted)) {
+        <div class="mt-2 flex items-center gap-1 text-red-500 text-sm">
+          <i class="fas fa-exclamation-triangle"></i>
+          @if (loginForm.get('password')?.hasError('required')) {
+            <span>Password is required</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Forgot Password Link -->
+    <div class="mb-8 text-center">
+      <a routerLink="/forget" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium transition-colors">
+        Forgot Password?
+      </a>
+    </div>
+
+    <!-- Submit Button -->
+    <button [disabled]="isLoading" type="submit"
+            class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 
+                   text-white font-semibold shadow-md hover:shadow-lg hover:scale-[1.01] 
+                   transition-all duration-300 relative overflow-hidden">
+      <span class="relative z-10">
+        Sign In
+        @if (isLoading) {
+          <i class="fas fa-spinner fa-spin ml-2"></i>
+        }
+      </span>
+      <div class="absolute inset-0 bg-white/10 opacity-0 hover:opacity-20 transition-opacity"></div>
+    </button>
+
+    <!-- Divider -->
   
+    <!-- Messages -->
+    @if (MsgError) {
+      <div class="mt-6 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm flex items-center gap-2">
+        <i class="fas fa-exclamation-circle"></i>
+        {{ MsgError }}
+      </div>
+    }
+    @if (IsSuccess) {
+      <div class="mt-6 p-3 rounded-lg bg-green-50 border border-green-200 text-green-600 text-sm flex items-center gap-2">
+        <i class="fas fa-check-circle"></i>
+        Login Successful! Redirecting...
+      </div>
+    }
+  </form>
+</div>

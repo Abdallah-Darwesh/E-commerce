@@ -4,12 +4,29 @@ import { CategoriesService } from '../../../../Core/Services/Categories/categori
 import { ICategories } from '../../../../Core/Interfaces/categories/ICategories';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-hero-secound-banner-home',
   imports: [CarouselModule],
   templateUrl: './hero-secound-banner-home.component.html',
-  styleUrls: ['./hero-secound-banner-home.component.css']
+  styleUrls: ['./hero-secound-banner-home.component.css'],
+  animations: [
+    trigger('fadeInSection', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(40px)' }),
+        animate('600ms cubic-bezier(0.4, 0, 0.2, 1)', 
+          style({ opacity: 1, transform: 'translateY(0)' }))
+      ])
+    ]),
+    trigger('staggerSlide', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(40px)' }),
+        animate('500ms {{delay}}ms cubic-bezier(0.4, 0, 0.2, 1)', 
+          style({ opacity: 1, transform: 'translateX(0)' }))
+      ], { params: { delay: 0 }})
+    ])
+  ]
 })
 export class HeroSecoundBannerHomeComponent implements OnInit {
   private readonly categoriesService = inject(CategoriesService);
@@ -41,23 +58,30 @@ export class HeroSecoundBannerHomeComponent implements OnInit {
     });
   }
 
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    autoplayTimeout: 2500,
-    navText: ['', ''],
-    responsive: {
-      0: { items: 1 },
-      400: { items: 2 },
-      740: { items: 3 },
-      940: { items: 8 }
+customOptions = {
+  loop: true,
+  mouseDrag: true,
+  touchDrag: true,
+  pullDrag: true,
+  dots: false,
+  navSpeed: 700,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  autoplayTimeout: 2500,
+  navText: ['', ''],
+  items: 3,
+  margin: 24,
+  nav: true,
+  responsive: {
+    0: {
+      items: 1
     },
-    nav: true
-  };
+    768: {
+      items: 2
+    },
+    1024: {
+      items: 3
+    }
+  }
+}
 }

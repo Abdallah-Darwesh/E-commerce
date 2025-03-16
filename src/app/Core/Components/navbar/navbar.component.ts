@@ -13,6 +13,7 @@ import { CartService } from '../../Services/cart/cart.service';
 })
 export class NavbarComponent  implements  OnInit  {
 
+
   navLinks = [
     { path: 'home', label: 'Home' },
     { path: 'products', label: 'Products' },
@@ -33,7 +34,8 @@ export class NavbarComponent  implements  OnInit  {
     { path: 'signin', label: 'Sign In' },
     { path: 'signup', label: 'Sign Up' }
   ];
-
+  
+  isMobileMenuOpen = false;
   @Input() isLogin: boolean = false;
 
   readonly authService = inject(AuthService);
@@ -55,5 +57,8 @@ export class NavbarComponent  implements  OnInit  {
       this.cartService.cartNumber.set(res.numOfCartItems)
     }
    })
+  }
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 }
